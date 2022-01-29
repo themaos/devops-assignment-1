@@ -31,6 +31,7 @@ public class LoginServlet extends HttpServlet {
 	private static final String LOGIN_USER_SQL = "select * from User where user_name =?";
 	private static final String RESET_PASSWORD_SQL = "update User set password = ? where user_name =?";
 	private static final String HOME_PAGE = "http://localhost:8088//agile/LoginServlet/home";
+	private static final String SECRET_PAGE = "http://localhost:8088//agile/LoginServlet/forgot";
 	private static final String RESET_PAGE = "http://localhost:8088//agile/LoginServlet/reset";
 
 	protected Connection getConnection() {
@@ -72,11 +73,17 @@ public class LoginServlet extends HttpServlet {
 		case "/LoginServlet/home":
 			showLoginForm(request, response);
 			break;
+		case "/LoginServlet/forgot":
+			showSecretForm(request, response);
+			break;
 		case "/LoginServlet/reset":
 			showResetForm(request, response);
 			break;
 		case "/LoginServlet/login":
 			verifyLoginUser(request, response);
+			break;
+		case "/LoginServlet/secret":
+			verifyUserSecret(request, response);
 			break;
 		case "/LoginServlet/password":
 			resetUserPassword(request, response);

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- %@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,25 +17,22 @@
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
 </head>
-
 <body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: tomato">
-			<div class="col-sm-6">
+			<div>
 				<a href="<%=request.getContextPath()%>/LoginServlet/home"
 					class="navbar-brand"> Makan Journey - Where Food Origins </a>
 			</div>
 		</nav>
 	</header>
 	<br>
-	<!-- form action="LoginServlet/login" method="post">
-		Username:<input type="text" name="userName" /><br /> 
-		Password:<input type="password" name="userPass" /><br /> 
-		<input type="submit" value="Submit" /><br />
-	</form>
-	<a href="<%=request.getContextPath()%>/LoginServlet/forgot"
-					class="nav-link">Forgot Password</a -->
+	<!-- form action="LoginServlet/secret" method="post">
+		Secret Question:<input type="text" name="secretQuestion" /><br />
+		Secret Answer:<input type="text" name="secretAnswer" /><br /> <input
+			type="submit" value="Submit" /><br />
+	</form -->
 
 	<!-- Code from https://mdbootstrap.com/docs/standard/extended/login/ -->
 	<div class="row">
@@ -44,47 +44,42 @@
 						class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
 						<form style="width: 23rem;"
-							action="<%=request.getContextPath()%>/LoginServlet/login"
+							action="<%=request.getContextPath()%>/LoginServlet/secret?forgotName=<c:out value='${user.userName}'/>"
 							method="post">
 
 							<!-- h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log
 								in</h3 -->
-							<h3 class="fw-normal mt-5 mb-4">Login</h3>
+							<h3 class="fw-normal mt-5 mb-4">Reset Password</h3>
+
+							<!-- div class="form-outline mb-4">
+								<input type="email" id="form2Example18"
+									class="form-control form-control-lg"  name="secretQuestion"/> <label
+									class="form-label" for="form2Example18">Secret Question</label>
+							</div -->
 
 							<div class="form-outline mb-4">
-								<input type="text" id="form2Example18" name="username"
-									class="form-control form-control-lg" /> <label
-									class="form-label" for="form2Example18">Username</label>
+								Username:
+								<c:out value="${user.userName}" />
 							</div>
 
 							<div class="form-outline mb-4">
-								<input type="text" id="form2Example28" name="password"
-									class="form-control form-control-lg" /> <label
-									class="form-label" for="form2Example28">Password</label>
+								Secret Question:
+								<c:out value="${user.secretQuestion}" />
+							</div>
+							<div class="form-outline mb-4">
+								<input type="text" id="form2Example28"
+									class="form-control form-control-lg" name="secretAnswer" /> <label
+									class="form-label" for="form2Example28">Secret Answer</label>
 							</div>
 
 							<div class="pt-1 mb-4">
-								<button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+								<button class="btn btn-info btn-lg btn-block" type="submit">Verify</button>
 							</div>
 
-							<script type="text/javascript">
-								function navigate() {
-									var username = document
-											.getElementById('form2Example18').value;
-									window.location = '${pageContext.servletContext.contextPath}/LoginServlet/forgot?forgotName='
-											+ username;
-								}
-							</script>
-
 							<p class="small mb-5 pb-lg-2">
-							<a class="text-muted"
-									href="javascript:navigate();">Forgot
-									Password</a>
-								<!-- a class="text-muted" href="" onclick="return navigate(); return false;">Forgot
-									Password</a-->
-								<!-- a class="text-muted"
-									href="<%=request.getContextPath()%>/LoginServlet/forgot?forgotName=test">Forgot
-									Password</a -->
+								<a class="text-muted"
+									href="<%=request.getContextPath()%>/LoginServlet/home"><<
+									Back to Login</a>
 							</p>
 							<p>
 								Don't have an account? <a href="#!" class="link-info">Register

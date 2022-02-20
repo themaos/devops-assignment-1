@@ -21,7 +21,7 @@
 			style="background-color: tomato">
 			<div class="col-sm-6">
 				<a href="<%=request.getContextPath()%>/LoginServlet/home"
-					class="navbar-brand"> Makan Journey - Where Food Origins </a>
+					class="navbar-brand"> Makan Journey - Where Food Origins (Test Case) </a>
 			</div>
 		</nav>
 	</header>
